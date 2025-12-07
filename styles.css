@@ -580,7 +580,7 @@ section {
     color: var(--text-primary);
 }
 
-.activity-content>p {
+.activity-content p {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     line-height: 1.8;
@@ -670,7 +670,7 @@ section {
     background-clip: text;
 }
 
-.join-content>p {
+.join-content p {
     color: var(--text-secondary);
     font-size: 1.1rem;
     line-height: 1.8;
@@ -785,8 +785,49 @@ section {
     font-size: 0.9rem;
 }
 
-/* Responsive */
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    :root {
+        --section-padding: 5rem 0;
+        --container-padding: 0 1.5rem;
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .messages-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .activities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile Landscape and Tablets Portrait */
 @media (max-width: 768px) {
+    :root {
+        --section-padding: 4rem 0;
+        --container-padding: 0 1.25rem;
+    }
+
+    /* Navigation */
     .nav-menu {
         position: fixed;
         right: -100%;
@@ -799,14 +840,24 @@ section {
         gap: 1.5rem;
         transition: right 0.3s ease;
         border-top: 1px solid var(--glass-border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
 
     .nav-menu.active {
         right: 0;
     }
 
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+
     .hamburger {
         display: flex;
+        z-index: 1001;
     }
 
     .hamburger.active span:nth-child(1) {
@@ -821,42 +872,447 @@ section {
         transform: rotate(-45deg) translate(8px, -8px);
     }
 
-    .messages-grid {
-        grid-template-columns: 1fr;
+    /* Hero Section */
+    .hero {
+        min-height: 90vh;
+        padding-top: 120px;
     }
 
-    .activities-grid {
-        grid-template-columns: 1fr;
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
     }
 
     .hero-cta {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
     }
 
     .btn {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
         text-align: center;
+        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
     }
-}
 
-@media (max-width: 480px) {
-    :root {
-        --section-padding: 4rem 0;
+    /* Sections */
+    section {
+        padding: 3.5rem 0;
     }
 
     .section-header {
-        margin-bottom: 2.5rem;
+        margin-bottom: 3rem;
     }
 
+    .section-title {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Cards */
     .glass-card {
+        padding: 2rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Messages */
+    .messages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .message-header {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .avatar-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.3rem;
+    }
+
+    .message-name {
+        font-size: 1.2rem;
+    }
+
+    .message-title {
+        font-size: 0.9rem;
+    }
+
+    .quote-icon {
+        font-size: 3rem;
+        top: -15px;
+    }
+
+    /* Activities */
+    .activities-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .activity-image {
+        height: 180px;
+    }
+
+    .activity-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .activity-content {
         padding: 1.5rem;
     }
 
-    .about-grid,
-    .stats-grid,
-    .join-benefits {
+    .activity-content h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    /* Join Section */
+    .join-content h2 {
+        font-size: 2rem;
+    }
+
+    .join-content p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .join-benefits {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .benefit {
+        padding: 0.8rem;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    :root {
+        --section-padding: 3rem 0;
+        --container-padding: 0 1rem;
+    }
+
+    /* Navigation */
+    .logo-text {
+        font-size: 1.5rem;
+    }
+
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .navbar.scrolled {
+        padding: 0.8rem 0;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 85vh;
+        padding-top: 100px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        margin-bottom: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+        margin-bottom: 0.6rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    /* Sections */
+    section {
+        padding: 2.5rem 0;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 0.6rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Cards */
+    .glass-card {
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+
+    .card-icon {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 1rem;
+    }
+
+    .about-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .about-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Messages */
+    .message-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .avatar-circle {
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+    }
+
+    .message-name {
+        font-size: 1.1rem;
+    }
+
+    .message-title {
+        font-size: 0.85rem;
+    }
+
+    .message-content p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .quote-icon {
+        font-size: 2.5rem;
+        top: -10px;
+    }
+
+    /* Activities */
+    .activity-image {
+        height: 160px;
+    }
+
+    .activity-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .activity-content {
+        padding: 1.2rem;
+    }
+
+    .activity-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .activity-content p {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .activity-features li {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+        padding-left: 1.5rem;
+    }
+
+    /* Stats */
+    .stats {
+        padding: 3rem 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .stat-card {
+        padding: 1.2rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+
+    /* Join Section */
+    .join-content {
+        padding: 1.5rem;
+    }
+
+    .join-content h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .join-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .benefit {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    .benefit-icon {
+        font-size: 1.3rem;
+    }
+
+    .benefit span:last-child {
+        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-grid {
+        gap: 1.5rem;
+    }
+
+    .footer-title {
+        font-size: 1.3rem;
+    }
+
+    .footer-column h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-column p,
+    .footer-column ul li {
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
+        padding-top: 1.5rem;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+        bottom: 1.5rem;
+    }
+
+    .scroll-indicator span {
+        width: 20px;
+        height: 35px;
+    }
+}
+
+/* Very Small Devices */
+@media (max-width: 360px) {
+    :root {
+        --container-padding: 0 0.8rem;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .glass-card {
+        padding: 1.2rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .activity-content h3 {
+        font-size: 1.2rem;
     }
 }
