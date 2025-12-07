@@ -1,3 +1,48 @@
+// Theme Toggle Functionality
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const htmlElement = document.documentElement;
+
+// Function to set theme
+function setTheme(theme) {
+    htmlElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+
+    // Update icon
+    if (theme === 'dark') {
+        themeIcon.textContent = '🌙';
+    } else {
+        themeIcon.textContent = '☀️';
+    }
+}
+
+// Function to toggle theme
+function toggleTheme() {
+    const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+}
+
+// Initialize theme on page load
+function initTheme() {
+    // Check localStorage first
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        // Check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+    }
+}
+
+// Event listener for toggle button
+themeToggle.addEventListener('click', toggleTheme);
+
+// Initialize theme on load
+initTheme();
+
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
@@ -71,12 +116,12 @@ const sections = document.querySelectorAll('section[id]');
 
 function updateActiveNav() {
     const scrollPosition = window.scrollY + 100;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -97,13 +142,13 @@ let hasAnimated = false;
 
 const animateCounters = () => {
     const counters = document.querySelectorAll('.stat-number');
-    
+
     counters.forEach(counter => {
         const target = parseInt(counter.textContent.replace('+', ''));
         const duration = 2000;
         const increment = target / (duration / 16);
         let current = 0;
-        
+
         const updateCounter = () => {
             current += increment;
             if (current < target) {
@@ -113,7 +158,7 @@ const animateCounters = () => {
                 counter.textContent = target + '+';
             }
         };
-        
+
         updateCounter();
     });
 };
@@ -143,15 +188,15 @@ window.addEventListener('scroll', () => {
 // Add hover effect to activity cards
 const activityCards = document.querySelectorAll('.activity-card');
 activityCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         const icon = this.querySelector('.activity-icon');
         if (icon) {
             icon.style.transform = 'scale(1.2) rotate(10deg)';
             icon.style.transition = 'transform 0.3s ease';
         }
     });
-    
-    card.addEventListener('mouseleave', function() {
+
+    card.addEventListener('mouseleave', function () {
         const icon = this.querySelector('.activity-icon');
         if (icon) {
             icon.style.transform = 'scale(1) rotate(0deg)';
